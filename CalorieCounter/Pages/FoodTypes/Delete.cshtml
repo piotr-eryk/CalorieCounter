@@ -1,0 +1,39 @@
+﻿@page
+@model CalorieCounter.Pages.FoodTypes.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Delete Food Type</h2>
+<br />
+<form method="post">
+    <input asp-for="FoodType.Id" hidden />
+    <div class=" border  backgroundWhite">
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <label asp-for="FoodType.Name"></label>
+            </div>
+            <div class="col-lg-5">
+                <input asp-for="FoodType.Name" disabled class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <label asp-for="FoodType.Calorie"></label>
+            </div>
+            <div class="col-lg-5">
+                <input asp-for="FoodType.Calorie" disabled class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-5 offset-2">
+                <partial name="_DeleteAndBackToListButton" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+

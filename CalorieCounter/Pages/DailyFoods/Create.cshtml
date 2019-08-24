@@ -1,0 +1,63 @@
+﻿@page
+@model CalorieCounter.Pages.DailyFoods.CreateModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Add New Daily Food</h2>
+<br />
+<form method="post">
+    <div class="border backgroundWhite">
+        <input hidden asp-for="DailyFood.UserId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <label asp-for="DailyFood.Day"></label>
+            </div>
+            <div class="col-lg-5">
+                <input asp-for="DailyFood.Day" class="form-control" />
+            </div>
+            <span asp-validation-for="DailyFood.Day" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <label asp-for="DailyFood.MinCalories"></label>
+            </div>
+            <div class="col-lg-5">
+                <input asp-for="DailyFood.MinCalories" class="form-control" />
+            </div>
+            <span asp-validation-for="DailyFood.MinCalories" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <label asp-for="DailyFood.MaxCalories"></label>
+            </div>
+            <div class="col-lg-5">
+                <input asp-for="DailyFood.MaxCalories" class="form-control" />
+            </div>
+            <span asp-validation-for="DailyFood.MaxCalories" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <label asp-for="DailyFood.OverAbundance"></label>
+            </div>
+            <div class="col-lg-5">
+                <input asp-for="DailyFood.OverAbundance" class="form-control" />
+            </div>
+            <span asp-validation-for="DailyFood.OverAbundance" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-5 col-lg-offset-2">
+                <partial name="_CreateAndBackToListButton" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+

@@ -1,0 +1,136 @@
+﻿@page
+@model CalorieCounter.Pages.DailyFoods.IndexModel
+@using CalorieCounter.Utility;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info py-2">Food Record For Registered</h2>
+
+<div class="container backgroundWhite">
+    <div class="card">
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-lg-6">
+                <i class="icon-food"></i>
+            </div>
+            <div class="col-lg-6 text-right">
+                @if(User.IsInRole(SD.AdminAndUser))
+                {
+                    <a asp-page="/Users/Index" class="btn btn-outline-info btn-sm">Back To Users</a>
+                }
+             </div>
+         </div>
+        <div class="card-body">
+            <div class="row" style="padding-bottom:40px; padding-top:20px;">
+                <div class="col-md-3">
+                    <p>
+                        <a asp-page="Create" asp-route-userId="@Model.CustVM.UserObj.Id" class="btn btn-info form-control">
+                            <i class="fas fa-plus"></i> &nbsp; Add New Food
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="CustVM.UserObj.Name"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px;">
+                            <input asp-for="CustVM.UserObj.Name" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="CustVM.UserObj.Age"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px;">
+                            <input asp-for="CustVM.UserObj.Age" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="CustVM.UserObj.Email"></label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px;">
+                            <input asp-for="CustVM.UserObj.Email" disabled class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.CustVM.DailyFoods.Count() == 0)
+            {
+                <p>
+                    No Daily Foods Found! Please add it...
+                </p>
+            }
+            else
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            @Html.DisplayNameFor(m => m.CustVM.DailyFoods.FirstOrDefault().Day)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CustVM.DailyFoods.FirstOrDefault().MinCalories)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CustVM.DailyFoods.FirstOrDefault().MaxCalories)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CustVM.DailyFoods.FirstOrDefault().OverAbundance)
+                        </th>
+                        <th></th>
+                        @if (User.IsInRole(SD.AdminAndUser))
+                        {
+                            <th></th>
+                        }
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.CustVM.DailyFoods)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Day)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.MinCalories)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.MaxCalories)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.OverAbundance)
+                        </td>
+
+                        <td>
+                            <a class="btn btn-secondary" asp-page="../Foods/History" asp-route-foodid="@item.Id">
+                                <i class="fas fa-wrench"></i> &nbsp; Food History
+                            </a>
+                        </td>
+                        @if (User.IsInRole(SD.AdminAndUser))
+                        {
+                            <td>
+                                <a class="btn btn-success" asp-page="../Foods/Create" asp-route-foodid="@item.Id">
+                                    <i class="fas fa-plus"></i> &nbsp; New Food
+                                </a>
+                            </td>
+                        }
+                            <td>
+                                <div class="btn-group role=group">
+                                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-id="@item.Id">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-id="@item.Id">
+                                        <i class="fas fa-dumpster"></i>
+                                    </a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</div>
+

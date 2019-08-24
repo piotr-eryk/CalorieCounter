@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>aspnet-CalorieCounter-D276963E-0534-49D2-93AB-2FB6C92784EA</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190610145024_ServiceAddFood.cs" />
+    <Compile Remove="Data\Migrations\20190610145024_ServiceAddFood.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190610145554_FoodDetails.cs" />
+    <Compile Remove="Data\Migrations\20190610145554_FoodDetails.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190610145756_FoodHeader.cs" />
+    <Compile Remove="Data\Migrations\20190610145756_FoodHeader.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190610150147_FoodDetails.cs" />
+    <Compile Remove="Data\Migrations\20190610150147_FoodDetails.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190610150609_FoodDetails.cs" />
+    <Compile Remove="Data\Migrations\20190610150609_FoodDetails.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190610150854_FoodHeader2.cs" />
+    <Compile Remove="Data\Migrations\20190610150854_FoodHeader2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
+</Project>
